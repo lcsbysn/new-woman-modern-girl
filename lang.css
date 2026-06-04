@@ -1,0 +1,68 @@
+:focus-visible {
+  outline: 2px solid #C41E3A;
+  outline-offset: 3px;
+}
+
+#lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  gap: 0;
+  margin-left: auto;
+  margin-right: 1.25rem;
+  height: fit-content;
+}
+
+#lang-toggle button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.4);
+  font-family: inherit;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0 0.35rem;
+  min-height: 44px;
+  min-width: 32px;
+  transition: color 0.15s ease;
+}
+
+/* Trennstrich zwischen den zwei Buttons */
+#lang-toggle button + button::before {
+  content: '|';
+  margin-right: 0.35rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+#lang-toggle button.active {
+  color: #1A1A1A;
+}
+
+#lang-toggle button:hover {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+/* Work-in-progress banner — slim fixed bar at the bottom of every page.
+   pointer-events:none keeps it from blocking clicks on content beneath it. */
+.wip-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9998;
+  pointer-events: none;
+  text-align: center;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: rgba(196, 30, 58, 0.92);
+  padding: 0.4rem 1rem;
+}
+
+.wip-banner::before {
+  content: '🚧 ';
+}

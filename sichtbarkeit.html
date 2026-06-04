@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historisches Gedächtnis – Frauen der chinesischen Republikzeit</title>
+  <meta name="description" content="Wie sichtbar sind die Frauen der chinesischen Republikzeit heute? Bekannt als, simulierte Suche, Wikipedia-Vergleich.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="sichtbarkeit.css">
+  <link rel="stylesheet" href="lang.css">
+  <link rel="stylesheet" href="search.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+
+  <div class="wip-banner" role="status" data-i18n="wip_banner">Work in Progress — diese Website wird laufend erweitert und überarbeitet.</div>
+
+  <!-- NAVBAR -->
+  <nav class="frau-nav">
+    <a href="index.html" class="frau-nav-back" data-i18n="nav_back"><span class="nav-arrow">←</span> Übersicht</a>
+    <span class="frau-nav-title" data-i18n="nav_title">Frauen der chinesischen Republikzeit</span>
+    <div id="lang-toggle">
+  <button onclick="setLang('de')" class="lang-btn" data-lang="de" aria-pressed="true">DE</button>
+  <button onclick="setLang('en')" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+</div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="netz-header" id="main-content">
+    <div class="netz-header-container">
+      <div class="netz-eyebrow" data-i18n="netzwerk_eyebrow">Historisches Gedächtnis · 11 Frauen · 1912–1949</div>
+      <h1 data-i18n="netzwerk_title">Wer wird erinnert?</h1>
+      <p data-i18n="netzwerk_desc">Wie diese Frauen beschrieben werden, was man findet wenn man sie sucht —
+         und wie groß die Lücke zu ihren männlichen Zeitgenossen ist.</p>
+    </div>
+  </header>
+
+  <!-- ── BEKANNT ALS ───────────────────────────────────────────── -->
+  <section class="ba-section">
+    <div class="ba-container">
+      <div class="ba-head">
+        <h2 data-i18n="netzwerk_bekannt_section">Bekannt als …</h2>
+        <p class="ba-intro" data-i18n="netzwerk_bekannt_section2">
+          In Lexika, Enzyklopädien und Wikipedia-Einleitungen werden diese Frauen
+          häufig zuerst durch ihre Beziehung zu einem Mann definiert.
+          Was sie selbst geleistet haben, folgt — wenn überhaupt — danach.
+        </p>
+      </div>
+      <div id="baList"></div>
+    </div>
+  </section>
+
+  <!-- HIDDEN: Simulierte Suche – im Code erhalten, Abschnitt ausgeblendet.
+       Zum Wiederherstellen: äußere Kommentarklammern entfernen.
+  <section class="suche-section">
+    <div class="suche-container">
+      <div class="suche-head">
+        <h2>Suche, die nichts findet</h2>
+        <p class="suche-intro">
+          Was erscheint, wenn man diese Frauen auf Deutsch sucht?
+          Eine Übersicht auf Basis verfügbarer Wikipedia- und Suchquellen,
+          Stand Mai 2026.
+        </p>
+      </div>
+      <div class="suche-chips" id="sucheChips"></div>
+      <div class="suche-ui">
+        <div class="suche-bar">
+          <svg class="suche-icon" viewBox="0 0 20 20" fill="none">
+            <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M13 13l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span id="sucheQuery" class="suche-query-text"></span>
+        </div>
+        <div class="suche-stats" id="sucheStats"></div>
+        <div id="sucheErgebnisse"></div>
+        <div class="suche-hinweis" id="sucheHinweis"></div>
+      </div>
+    </div>
+  </section>
+  -->
+
+  <!-- ── WIKIPEDIA-SEITENAUFRUFE ──────────────────────────────── -->
+  <section class="wiki-section">
+    <div class="wiki-container">
+      <h2 data-i18n="netzwerk_chart_title">Wikipedia-Seitenaufrufe</h2>
+      <div class="wiki-lang-toggle">
+        <button class="wiki-lang-btn active" data-lang="en" data-i18n="netzwerk_toggle_en">Englische Wikipedia</button>
+        <button class="wiki-lang-btn" data-lang="zh" data-i18n="netzwerk_toggle_zh">Chinesische Wikipedia</button>
+      </div>
+      <p class="wiki-intro" id="wikiIntro"></p>
+      <div class="wiki-legend">
+        <span class="wiki-legend-item">
+          <span class="wiki-legend-dot" style="background:#C41E3A"></span><span data-i18n="netzwerk_legend_women">Frauen</span>
+        </span>
+        <span class="wiki-legend-item">
+          <span class="wiki-legend-dot" style="background:#1E3A8A"></span><span data-i18n="netzwerk_legend_men">Männer der Ära (Kontrastmaßstab)</span>
+        </span>
+      </div>
+      <div id="wikiChart" class="wiki-chart">
+        <div class="wiki-loading" data-i18n="netzwerk_loading">Daten werden geladen…</div>
+      </div>
+      <p class="wiki-note" id="wikiNote"></p>
+    </div>
+  </section>
+
+  <script src="lang.js"></script>
+  <script src="translations.js"></script>
+  <script src="data.js"></script>
+  <script src="sichtbarkeit.js"></script>
+  <script src="search-data.js"></script>
+  <script src="search.js"></script>
+</body>
+</html>

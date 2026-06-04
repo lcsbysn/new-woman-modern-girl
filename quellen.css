@@ -1,0 +1,453 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:focus-visible {
+  outline: 2px solid #C41E3A;
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 9999;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  background: #C41E3A;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+:root {
+  --bg:      #F7F3EC;
+  --white:   #FFFFFF;
+  --ink:     #1A140E;
+  --muted:   rgba(26,20,14,0.50);
+  --faint:   rgba(26,20,14,0.10);
+  --radius:  12px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── NAV ──────────────────────────────────────────────────────── */
+
+.pq-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  z-index: 100;
+  background: rgba(247,243,236,0.90);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--faint);
+}
+
+.pq-nav-back {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.pq-nav-back:hover { color: var(--ink); }
+
+.pq-nav-themes {
+  display: flex;
+  gap: 2rem;
+}
+
+.pq-nav-themes a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.pq-nav-themes a:hover { color: var(--ink); }
+.pq-nav-themes a.active {
+  color: var(--theme, #C41E3A);
+  box-shadow: 0 2px 0 var(--theme, #C41E3A);
+}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+
+.pq-hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 3.5rem 5rem;
+  overflow: hidden;
+  background: var(--white);
+  border-bottom: 3px solid var(--ink);
+}
+
+.pq-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+}
+
+.pq-hero-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+
+.pq-hero-title {
+  font-size: clamp(5rem, 16vw, 12rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 0.88;
+  color: var(--ink);
+  margin-bottom: 1.75rem;
+}
+
+.pq-hero-sub {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 500px;
+  margin-bottom: 2.5rem;
+}
+
+.pq-hero-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.pq-hero-chip {
+  display: inline-block;
+  padding: 0.55rem 1.1rem;
+  border-radius: 100px;
+  background: var(--c);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.pq-hero-chip:hover { opacity: 0.85; transform: translateY(-2px); }
+
+.pq-hero-deco {
+  position: absolute;
+  right: -1vw;
+  bottom: -8vh;
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(18rem, 38vw, 30rem);
+  font-weight: 700;
+  color: rgba(26,20,14,0.04);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   THEME SECTION
+   Structure: bold colored header band → cream quote area
+══════════════════════════════════════════════════════════════ */
+
+.pq-theme {
+  /* no own background — splits into header + body */
+}
+
+/* ── THEME HEADER BAND ────────────────────────────────────────── */
+
+.pq-theme-header {
+  background: var(--theme, #C41E3A);
+  color: #fff;
+  padding: 4rem 3.5rem 3.5rem;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  column-gap: 2rem;
+  row-gap: 1.25rem;
+}
+
+.pq-theme-number {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.55);
+  padding-top: 0.6rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.pq-theme-title {
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  color: #fff;
+}
+
+.pq-theme-theory {
+  grid-column: 2;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.70);
+  font-weight: 400;
+  max-width: 680px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+/* ── QUOTES AREA ──────────────────────────────────────────────── */
+
+.pq-quotes-area {
+  background: var(--bg);
+  padding: 4rem 3.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+/* ── QUOTE CARD ───────────────────────────────────────────────── */
+
+.pq-quote {
+  max-width: 720px;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2.5rem 2.5rem 2rem;
+  border-left: 5px solid var(--theme, #C41E3A);
+  box-shadow: 0 2px 16px rgba(26,20,14,0.06);
+  overflow: hidden;
+}
+
+.pq-quote--right {
+  margin-left: auto;
+  border-left: none;
+  border-right: 5px solid var(--theme, #C41E3A);
+}
+
+.pq-quote-meta-top {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 1.75rem;
+}
+
+.pq-quote--right .pq-quote-meta-top { align-items: flex-end; text-align: right; }
+
+.pq-quote-author {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--theme, #C41E3A);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.pq-quote-author:hover { opacity: 0.7; }
+
+.pq-quote-work {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ── QUOTE BODY ───────────────────────────────────────────────── */
+
+.pq-quote-body { margin-bottom: 1.5rem; }
+
+.pq-quote-chinese {
+  font-family: 'Noto Serif SC', 'PingFang SC', 'Microsoft YaHei', serif;
+  font-size: clamp(1.9rem, 3.5vw, 3.2rem);
+  line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.04em;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+.pq-quote--right .pq-quote-chinese { text-align: right; }
+
+.pq-quote-de-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--theme, #C41E3A);
+  margin-bottom: 0.4rem;
+}
+
+.pq-quote-de {
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--muted);
+  font-style: italic;
+  border: none;
+  padding: 0;
+  margin: 0;
+  max-width: 520px;
+}
+
+.pq-quote--right .pq-quote-de {
+  margin-left: auto;
+  text-align: right;
+}
+
+/* Film card variant */
+.pq-quote-body--film {
+  padding: 1.25rem 1.5rem;
+  background: var(--bg);
+  border-radius: 8px;
+}
+
+.pq-film-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+
+.pq-film-desc {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+/* ── ANALYSIS ─────────────────────────────────────────────────── */
+
+.pq-quote-analysis {
+  margin-top: 1.5rem;
+  padding: 1.1rem 1.4rem;
+  background: rgba(26,20,14,0.04);
+  border-radius: 8px;
+  font-size: 0.86rem;
+  line-height: 1.8;
+  color: var(--muted);
+  border-left: 3px solid var(--faint);
+}
+
+.pq-analysis-label {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--theme, #C41E3A);
+  margin-bottom: 0.5rem;
+}
+
+/* ── SOURCE ───────────────────────────────────────────────────── */
+
+.pq-quote-source {
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  color: rgba(26,20,14,0.38);
+  line-height: 1.65;
+  font-style: italic;
+}
+
+/* ── OUTRO ────────────────────────────────────────────────────── */
+
+.pq-outro {
+  background: var(--ink);
+  color: #fff;
+  padding: 6rem 3.5rem;
+}
+
+.pq-outro-inner { max-width: 700px; }
+
+.pq-outro-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 1rem;
+}
+
+.pq-outro-title {
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.pq-outro-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pq-outro-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: 6px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: background 0.2s, border-color 0.2s;
+}
+.pq-outro-link:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.45);
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────────── */
+
+@media (max-width: 700px) {
+  .pq-hero { padding: 6rem 1.5rem 3rem; }
+  .pq-theme-header { grid-template-columns: 1fr; padding: 2.5rem 1.5rem 2rem; }
+  .pq-theme-number { display: none; }
+  .pq-theme-theory { grid-column: 1; }
+  .pq-quotes-area { padding: 2.5rem 1.5rem; }
+  .pq-quote { padding: 1.75rem 1.5rem 1.5rem; }
+  .pq-quote--right {
+    margin-left: 0;
+    border-right: none;
+    border-left: 5px solid var(--theme, #C41E3A);
+    text-align: left;
+  }
+  .pq-quote--right .pq-quote-meta-top { align-items: flex-start; text-align: left; }
+  .pq-quote--right .pq-quote-chinese { text-align: left; }
+  .pq-quote--right .pq-quote-de { text-align: left; margin-left: 0; }
+  .pq-nav-themes { display: none; }
+  .pq-outro { padding: 4rem 1.5rem; }
+}

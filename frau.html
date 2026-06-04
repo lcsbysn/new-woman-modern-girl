@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frauen der chinesischen Republikzeit</title>
+  <meta name="description" content="Profile bedeutender Frauen der chinesischen Republikzeit (1912–1949).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="frau.css">
+  <link rel="stylesheet" href="lang.css">
+  <link rel="stylesheet" href="search.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+
+  <div class="wip-banner" role="status" data-i18n="wip_banner">Work in Progress — diese Website wird laufend erweitert und überarbeitet.</div>
+
+  <!-- NAVBAR -->
+  <nav class="frau-nav" id="frauNav">
+    <a href="index.html" class="frau-nav-back" data-i18n="nav_back"><span class="nav-arrow">←</span> Übersicht</a>
+    <span class="frau-nav-title" data-i18n="nav_title">Frauen der chinesischen Republikzeit</span>
+     <div id="lang-toggle">
+  <button onclick="setLang('de')" class="lang-btn" data-lang="de" aria-pressed="true">DE</button>
+  <button onclick="setLang('en')" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+</div>
+    <a href="galerie3d.html" class="frau-nav-back" data-i18n="nav_gallery_link">Galerie <span class="nav-arrow">→</span></a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div class="hero-accent-line"></div>
+    <div class="hero-container">
+      <h1 id="hero-name" class="hero-name"></h1>
+      <div id="hero-chinesisch" class="hero-chinesisch"></div>
+      <div class="hero-meta">
+        <span id="hero-lebensdaten" class="hero-lebensdaten"></span>
+        <span class="hero-meta-sep">·</span>
+        <span id="hero-rolle" class="hero-rolle"></span>
+      </div>
+      <p id="hero-intro" class="hero-intro"></p>
+    </div>
+  </section>
+
+  <!-- TAB NAVIGATION -->
+  <div class="tab-nav" id="tabNav">
+    <div class="tab-nav-inner" role="tablist" aria-label="Profilbereiche">
+      <button class="tab" role="tab" id="tab-btn-biografie"  aria-selected="true"  aria-controls="tab-biografie"  data-tab="biografie"  data-i18n="tab_biografie">Biografie</button>
+      <button class="tab" role="tab" id="tab-btn-zeitleiste" aria-selected="false" aria-controls="tab-zeitleiste" data-tab="zeitleiste" data-i18n="tab_zeitleiste">Zeitleiste</button>
+      <button class="tab" role="tab" id="tab-btn-galerie"    aria-selected="false" aria-controls="tab-galerie"    data-tab="galerie"    data-i18n="tab_galerie">Galerie</button>
+      <button class="tab" role="tab" id="tab-btn-quiz"       aria-selected="false" aria-controls="tab-quiz"       data-tab="quiz"       data-i18n="tab_quiz">Quiz</button>
+    </div>
+  </div>
+
+  <!-- TAB CONTENTS -->
+  <main class="tab-content-wrapper" id="main-content">
+
+    <div id="tab-biografie"  class="tab-content" role="tabpanel" aria-labelledby="tab-btn-biografie"  tabindex="0"></div>
+
+    <div id="tab-zeitleiste" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-zeitleiste" tabindex="0"></div>
+
+    <div id="tab-galerie"    class="tab-content" role="tabpanel" aria-labelledby="tab-btn-galerie"    tabindex="0"></div>
+
+    <div id="tab-quiz"       class="tab-content" role="tabpanel" aria-labelledby="tab-btn-quiz"       tabindex="0"></div>
+
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Bildansicht">
+    <div class="lightbox-box">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Schließen">✕</button>
+      <div id="lightbox-img" class="lightbox-img-area"></div>
+      <div id="lightbox-info" class="lightbox-info"></div>
+    </div>
+  </div>
+
+  <script src="lang.js"></script>
+  <script src="translations.js"></script>
+  <script src="data.js"></script>
+  <script src="data_en_a.js"></script>
+  <script src="data_en_b.js"></script>
+  <script src="data_en.js"></script>
+  <script src="frau.js"></script>
+  <script src="search-data.js"></script>
+  <script src="search.js"></script>
+</body>
+</html>

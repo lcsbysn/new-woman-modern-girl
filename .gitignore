@@ -1,0 +1,11 @@
+# Editor- & Tooling-Verzeichnisse
+.vscode/
+.claude/
+CLAUDE.md
+
+# Archive
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wie aufgeklärt bist du wirklich? – Quiz</title>
+  <meta name="description" content="Ein Bewusstseinstest zu Feminismus und Frauengeschichte in der chinesischen Republikzeit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="lang.css">
+  <link rel="stylesheet" href="search.css">
+</head>
+<body>
+  <a href="#screenStart" class="skip-link">Zum Hauptinhalt springen</a>
+
+  <div class="wip-banner" role="status" data-i18n="wip_banner">Work in Progress — diese Website wird laufend erweitert und überarbeitet.</div>
+
+  <!-- NAVBAR -->
+  <nav class="site-nav">
+    <a href="index.html" class="site-nav-back" data-i18n="nav_back"><span class="nav-arrow">←</span> Übersicht</a>
+    <span class="site-nav-title" data-i18n="nav_title">Frauen der chinesischen Republikzeit</span>
+    <div id="lang-toggle">
+  <button onclick="setLang('de')" class="lang-btn" data-lang="de" aria-pressed="true">DE</button>
+  <button onclick="setLang('en')" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+</div>
+  </nav>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-track" id="progressTrack">
+    <div class="progress-fill" id="progressFill"
+         role="progressbar"
+         aria-valuenow="0" aria-valuemin="0" aria-valuemax="15"
+         aria-label="Fragebogen-Fortschritt"></div>
+  </div>
+
+  <!-- ── START ─────────────────────────────────────── -->
+  <section id="screenStart" class="screen screen--start active">
+    <div class="container">
+      <div class="eyebrow" data-i18n="quiz_page_eyebrow">Feminismus · Frauengeschichte · Bewusstsein</div>
+      <h1 class="headline" data-i18n="quiz_page_headline">Wie aufgeklärt<br>bist du wirklich?</h1>
+      <p class="lead" data-i18n="quiz_page_lead">
+        15 Thesen. Es gibt richtige und falsche Antworten.<br>
+        Dein Ergebnis wird dich entweder bestätigen — oder konfrontieren.
+      </p>
+      <p class="body-text" data-i18n="quiz_page_body">
+        Dieser Test misst, wie bewusst du mit Feminismus und Frauengeschichte umgehst.
+        Die Grundlage bildet die Geschichte der Frauen in der chinesischen Republikzeit
+        (1912–1949) — einer Ära, die du wahrscheinlich nicht so gut kennst, wie du denkst.
+      </p>
+      <button class="btn btn--primary" id="btnStart" data-i18n="quiz_page_start_btn">Test beginnen →</button>
+      <p class="footnote" data-i18n="quiz_page_footnote">Anonym · Keine Daten werden gespeichert · ca. 4 Minuten</p>
+      <div class="deco" aria-hidden="true">女</div>
+    </div>
+  </section>
+
+  <!-- ── FRAGEN ─────────────────────────────────────── -->
+  <section id="screenQuestion" class="screen screen--question">
+    <div class="container">
+      <div class="question-meta">
+        <span class="question-counter" id="questionCounter">01 / 15</span>
+      </div>
+
+      <div class="statement-card" id="statementCard">
+        <p class="statement" id="statementText"></p>
+      </div>
+
+      <div class="answers">
+        <button class="answer-btn" data-value="agree">
+          <span class="answer-icon">✓</span>
+          <span data-i18n="quiz_answer_agree">Stimme zu</span>
+          <span class="answer-key">[1]</span>
+        </button>
+        <button class="answer-btn" data-value="neutral">
+          <span class="answer-icon">—</span>
+          <span data-i18n="quiz_answer_neutral">Neutral</span>
+          <span class="answer-key">[2]</span>
+        </button>
+        <button class="answer-btn" data-value="disagree">
+          <span class="answer-icon">✗</span>
+          <span data-i18n="quiz_answer_disagree">Stimme nicht zu</span>
+          <span class="answer-key">[3]</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ERGEBNIS ───────────────────────────────────── -->
+  <section id="screenResult" class="screen screen--result">
+    <div class="container">
+      <div class="result-eyebrow" data-i18n="quiz_result_eyebrow">Dein Ergebnis</div>
+      <div class="result-score" id="resultScore">—</div>
+      <h2 class="result-label" id="resultLabel"></h2>
+      <p class="result-text" id="resultText"></p>
+
+      <div class="score-bar-wrapper">
+        <div class="score-bar-track">
+          <div class="score-bar-fill" id="scoreBarFill"
+               role="meter"
+               aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+               aria-label="Bewusstseinswert"></div>
+        </div>
+        <div class="score-bar-ends">
+          <span data-i18n="quiz_result_min_label">Nicht bewusst</span>
+          <span data-i18n="quiz_result_max_label">Vollständig bewusst</span>
+        </div>
+      </div>
+
+      <div class="breakdown" id="breakdown"></div>
+
+      <div class="result-actions">
+        <a href="index.html" class="btn btn--primary" data-i18n="quiz_result_discover_btn">Frauen entdecken →</a>
+        <button class="btn btn--secondary" id="btnRestart" data-i18n="quiz_result_retry_btn">Nochmal versuchen</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="lang.js"></script>
+  <script src="translations.js"></script>
+  <script src="questions.js"></script>
+  <script src="questions_en.js"></script>
+  <script src="app.js"></script>
+  <script src="data.js"></script>
+  <script src="search-data.js"></script>
+  <script src="search.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Virtuelle Ausstellung: Elf Frauen der chinesischen Republikzeit — Revolutionärinnen, Schriftstellerinnen, Filmikonen.">
+  <title>Virtuelle Galerie – Frauen der chinesischen Republikzeit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="galerie3d.css">
+  <link rel="stylesheet" href="lang.css">
+  <link rel="stylesheet" href="search.css">
+</head>
+<body>
+  <a href="#gMain" class="skip-link">Zum Hauptinhalt springen</a>
+
+  <div class="wip-banner" role="status" data-i18n="wip_banner">Work in Progress — diese Website wird laufend erweitert und überarbeitet.</div>
+
+  <!-- ── INTRO ──────────────────────────────────────────────────── -->
+  <div class="g-intro" id="gIntro">
+    <div class="g-intro-inner">
+      <p class="g-intro-eyebrow" data-i18n="galerie_intro_eyebrow">Virtuelle Ausstellung · 11 Frauen · 1912–1949</p>
+      <h1 class="g-intro-title" data-i18n="galerie_intro_title">Ihre Geschichte.</h1>
+      <p class="g-intro-sub" data-i18n="galerie_intro_sub">
+        Elf Frauen der chinesischen Republikzeit — Revolutionärinnen,
+        Schriftstellerinnen, Filmikonen. Sie haben Geschichte geprägt.
+        Wenige kennen ihre Namen.
+      </p>
+      <button class="g-intro-btn" id="gIntroBtn" data-i18n="galerie_enter_btn">Galerie betreten</button>
+    </div>
+    <div class="g-intro-deco" aria-hidden="true">女</div>
+  </div>
+
+  <!-- ── NAV ────────────────────────────────────────────────────── -->
+  <nav class="gnav">
+    <a href="index.html" class="gnav-back" data-i18n="nav_back"><span class="nav-arrow">←</span> Übersicht</a>
+    <div id="lang-toggle">
+      <button onclick="setLang('de')" class="lang-btn" data-lang="de" aria-pressed="true">DE</button>
+      <button onclick="setLang('en')" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <span class="gnav-count" id="gCount"></span>
+  </nav>
+
+  <!-- ── MAIN ───────────────────────────────────────────────────── -->
+  <main class="g-main" id="gMain" tabindex="-1">
+
+    <!-- Each section injected by JS -->
+
+  </main>
+
+  <script src="lang.js"></script>
+  <script src="translations.js"></script>
+  <script src="galerie3d.js"></script>
+  <script src="data.js"></script>
+  <script src="search-data.js"></script>
+  <script src="search.js"></script>
+</body>
+</html>
