@@ -149,8 +149,10 @@ body {
 }
 
 .pq-hero-chip {
-  display: inline-block;
-  padding: 0.55rem 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0.5rem 1.1rem;
   border-radius: 100px;
   background: var(--c);
   color: #fff;
@@ -160,7 +162,10 @@ body {
   letter-spacing: 0.02em;
   transition: opacity 0.2s, transform 0.15s;
 }
-.pq-hero-chip:hover { opacity: 0.85; transform: translateY(-2px); }
+@media (hover: hover) {
+  .pq-hero-chip:hover { opacity: 0.85; transform: translateY(-2px); }
+}
+.pq-hero-chip:active { opacity: 0.8; }
 
 .pq-hero-deco {
   position: absolute;
@@ -271,7 +276,8 @@ body {
   text-decoration: none;
   transition: opacity 0.2s;
 }
-.pq-quote-author:hover { opacity: 0.7; }
+@media (hover: hover) { .pq-quote-author:hover { opacity: 0.7; } }
+.pq-quote-author:active { opacity: 0.6; }
 
 .pq-quote-work {
   font-size: 0.75rem;
@@ -425,8 +431,14 @@ body {
   font-weight: 700;
   transition: background 0.2s, border-color 0.2s;
 }
-.pq-outro-link:hover {
-  background: rgba(255,255,255,0.08);
+@media (hover: hover) {
+  .pq-outro-link:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.45);
+  }
+}
+.pq-outro-link:active {
+  background: rgba(255,255,255,0.12);
   border-color: rgba(255,255,255,0.45);
 }
 
@@ -450,4 +462,11 @@ body {
   .pq-quote--right .pq-quote-de { text-align: left; margin-left: 0; }
   .pq-nav-themes { display: none; }
   .pq-outro { padding: 4rem 1.5rem; }
+}
+
+/* ── SMALL PHONES ─────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .pq-hero { padding: 4.5rem 1.25rem 2.5rem; }
+  /* title min was 5rem (~80px) — too tall above the fold on a phone */
+  .pq-hero-title { font-size: clamp(3rem, 15vw, 12rem); }
 }

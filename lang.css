@@ -3,6 +3,11 @@
   outline-offset: 3px;
 }
 
+/* Site-wide horizontal-overflow safety net (lang.css is loaded on every page).
+   `clip` rather than `hidden` so <body> doesn't become a scroll container,
+   which would break the many position:sticky navbars. */
+html { overflow-x: clip; }
+
 #lang-toggle {
   display: inline-flex;
   align-items: center;
@@ -40,8 +45,13 @@
   color: #1A1A1A;
 }
 
-#lang-toggle button:hover {
-  color: rgba(0, 0, 0, 0.75);
+@media (hover: hover) {
+  #lang-toggle button:hover {
+    color: rgba(0, 0, 0, 0.75);
+  }
+}
+#lang-toggle button:active {
+  color: rgba(0, 0, 0, 0.85);
 }
 
 /* Work-in-progress banner — slim fixed bar at the bottom of every page.
@@ -65,4 +75,11 @@
 
 .wip-banner::before {
   content: '🚧 ';
+}
+
+/* On phones, content runs edge-to-edge, so the fixed banner can cover the
+   last line / footer links. Reserve space at the bottom of the page for it. */
+@media (max-width: 700px) {
+  /* the banner wraps to two lines (~44px) on narrow screens */
+  body { padding-bottom: 3.2rem; }
 }

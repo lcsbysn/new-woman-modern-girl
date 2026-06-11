@@ -177,8 +177,16 @@ body {
 
 .matrix-scroll {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+}
+/* On touch, keep a thin scrollbar permanently visible so it's obvious the
+   wide comparison table scrolls sideways. */
+@media (max-width: 700px) {
+  .matrix-scroll { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+  .matrix-scroll::-webkit-scrollbar { height: 6px; }
+  .matrix-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 }
 
 .matrix-table {
@@ -480,7 +488,10 @@ body {
 }
 
 .suche-chip {
-  padding: 0.38rem 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0.4rem 0.95rem;
   border-radius: 100px;
   border: 1.5px solid var(--border);
   background: var(--card);
@@ -492,7 +503,10 @@ body {
   transition: all 0.15s;
   white-space: nowrap;
 }
-.suche-chip:hover { border-color: var(--accent); color: var(--accent); }
+@media (hover: hover) {
+  .suche-chip:hover { border-color: var(--accent); color: var(--accent); }
+}
+.suche-chip:active { border-color: var(--accent); color: var(--accent); }
 .suche-chip.active {
   background: var(--accent);
   border-color: var(--accent);
@@ -657,7 +671,10 @@ body {
 }
 
 .wiki-lang-btn {
-  padding: 0.38rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0.4rem 1rem;
   border-radius: 6px;
   border: 1.5px solid var(--border);
   background: transparent;
@@ -673,7 +690,13 @@ body {
   color: #fff;
   border-color: var(--text);
 }
-.wiki-lang-btn:hover:not(.active) {
+@media (hover: hover) {
+  .wiki-lang-btn:hover:not(.active) {
+    border-color: var(--text-muted);
+    color: var(--text);
+  }
+}
+.wiki-lang-btn:active:not(.active) {
   border-color: var(--text-muted);
   color: var(--text);
 }
@@ -819,4 +842,14 @@ body {
 
   .wiki-bar-label { width: 120px; font-size: 0.72rem; }
   .wiki-bar-value { width: 60px;  font-size: 0.66rem; }
+}
+
+/* ── SMALL PHONES ────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .netz-header { padding: 1.75rem 1rem 1.5rem; }
+  .ba-container,
+  .suche-container,
+  .wiki-container { padding: 0 1rem; }
+  .ba-section, .suche-section { padding: 3rem 0 2.5rem; }
+  .wiki-bar-label { width: 92px; font-size: 0.68rem; }
 }

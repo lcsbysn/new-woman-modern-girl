@@ -498,35 +498,58 @@ function renderNetzwerk(person) {
 
   // Tooltip + Klick-Events
   const svgEl = container.querySelector('svg');
+  // Touch devices have no hover: a tap must reveal the tooltip instead of
+  // navigating instantly, otherwise the connection text is never seen.
+  const isTouch = window.matchMedia('(hover: none)').matches;
+
+  function showTooltip(knotenData, istVerweis) {
+    tooltip.innerHTML = `
+      <div class="netzwerk-tooltip-name">${knotenData.name} ${knotenData.chinesisch}</div>
+      <div class="netzwerk-tooltip-info">${knotenData.verbindung || ''}</div>
+      ${istVerweis ? `<a class="netzwerk-tooltip-link" href="frau.html?id=${knotenData.id}">${T('galerie_lb_to_profile')} →</a>` : ''}
+    `;
+    tooltip.classList.add('visible');
+  }
+  function hideTooltip() { tooltip.classList.remove('visible'); }
 
   svgEl.querySelectorAll('.netz-node').forEach(nodeEl => {
     const nodeId = nodeEl.dataset.id;
-    const nodeTyp = nodeEl.dataset.typ;
     const knotenData = knoten.find(k => k.id === nodeId);
     if (!knotenData) return;
+    const istVerweis = nodeEl.dataset.typ === 'verweis';
 
-    nodeEl.addEventListener('mouseenter', (e) => {
-      if (!knotenData.verbindung) return;
-      tooltip.innerHTML = `
-        <div class="netzwerk-tooltip-name">${knotenData.name} ${knotenData.chinesisch}</div>
-        <div class="netzwerk-tooltip-info">${knotenData.verbindung}</div>
-      `;
-      tooltip.classList.add('visible');
-      positionTooltip(e);
-    });
-
-    nodeEl.addEventListener('mousemove', positionTooltip);
-
-    nodeEl.addEventListener('mouseleave', () => {
-      tooltip.classList.remove('visible');
-    });
-
-    if (nodeTyp === 'verweis') {
-      nodeEl.addEventListener('click', () => {
-        window.location.href = `frau.html?id=${nodeId}`;
+    if (isTouch) {
+      // Tap shows the tooltip near the node; reference nodes carry a link
+      // inside the tooltip so navigation stays a deliberate second tap.
+      nodeEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!knotenData.verbindung && !istVerweis) { hideTooltip(); return; }
+        tooltip.classList.add('netzwerk-tooltip--touch');
+        showTooltip(knotenData, istVerweis);
+        positionTooltipAtNode(nodeEl);
       });
+    } else {
+      nodeEl.addEventListener('mouseenter', (e) => {
+        if (!knotenData.verbindung) return;
+        showTooltip(knotenData, false);
+        positionTooltip(e);
+      });
+      nodeEl.addEventListener('mousemove', positionTooltip);
+      nodeEl.addEventListener('mouseleave', hideTooltip);
+      if (istVerweis) {
+        nodeEl.addEventListener('click', () => {
+          window.location.href = `frau.html?id=${nodeId}`;
+        });
+      }
     }
   });
+
+  // On touch, a tap anywhere outside a node/tooltip dismisses the tooltip.
+  if (isTouch) {
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.netz-node') && !e.target.closest('.netzwerk-tooltip')) hideTooltip();
+    });
+  }
 
   function positionTooltip(e) {
     const x = e.clientX + 14;
@@ -537,5 +560,18 @@ function renderNetzwerk(person) {
     const vh = window.innerHeight;
     tooltip.style.left = (x + tw > vw - 10 ? x - tw - 28 : x) + 'px';
     tooltip.style.top  = (y + th > vh - 10 ? y - th : y) + 'px';
+  }
+
+  function positionTooltipAtNode(nodeEl) {
+    const r  = nodeEl.getBoundingClientRect();
+    const tw = tooltip.offsetWidth || 220;
+    const th = tooltip.offsetHeight || 60;
+    const vw = window.innerWidth, vh = window.innerHeight;
+    let x = r.left + r.width / 2 - tw / 2;
+    let y = r.bottom + 10;
+    x = Math.max(10, Math.min(x, vw - tw - 10));
+    if (y + th > vh - 10) y = r.top - th - 10;
+    tooltip.style.left = x + 'px';
+    tooltip.style.top  = y + 'px';
   }
 }

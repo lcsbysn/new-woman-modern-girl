@@ -400,10 +400,13 @@ body {
   overflow: hidden;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
-.galerie-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
+@media (hover: hover) {
+  .galerie-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
 }
+.galerie-card:active { box-shadow: var(--shadow-lg); }
 
 .galerie-img-container {
   height: 240px;
@@ -617,6 +620,17 @@ body {
   color: var(--text-muted);
 }
 
+/* On touch the tooltip is tappable (it can hold a "to profile" link). */
+.netzwerk-tooltip--touch { pointer-events: auto; }
+.netzwerk-tooltip-link {
+  display: inline-block;
+  margin-top: 0.45rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
 .netzwerk-legende {
   display: flex;
   flex-wrap: wrap;
@@ -717,9 +731,15 @@ body {
   line-height: 1.45;
 }
 
-.quiz-option:hover:not(:disabled):not(.quiz-option--selected) {
+@media (hover: hover) {
+  .quiz-option:hover:not(:disabled):not(.quiz-option--selected) {
+    border-color: var(--accent);
+    background: rgba(196, 30, 58, 0.04);
+  }
+}
+.quiz-option:active:not(:disabled):not(.quiz-option--selected) {
   border-color: var(--accent);
-  background: rgba(196, 30, 58, 0.04);
+  background: rgba(196, 30, 58, 0.06);
 }
 
 .quiz-option--selected {
@@ -798,7 +818,8 @@ body {
 
 .quiz-submit,
 .quiz-retry {
-  padding: 0.7rem 1.6rem;
+  padding: 0.75rem 1.6rem;
+  min-height: 44px;
   border-radius: 8px;
   font-family: var(--font);
   font-size: 0.9rem;

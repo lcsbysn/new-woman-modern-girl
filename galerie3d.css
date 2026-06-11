@@ -105,7 +105,8 @@ body.g-lb-open { overflow: hidden; }
   cursor: pointer;
   transition: opacity 0.2s, transform 0.2s;
 }
-.g-intro-btn:hover { opacity: 0.88; transform: translateY(-2px); }
+@media (hover: hover) { .g-intro-btn:hover { opacity: 0.88; transform: translateY(-2px); } }
+.g-intro-btn:active { opacity: 0.82; }
 
 .g-intro-deco {
   position: absolute;
@@ -143,7 +144,8 @@ body.g-lb-open { overflow: hidden; }
   letter-spacing: 0.02em;
   transition: color 0.2s;
 }
-.gnav-back:hover { color: #fff; }
+@media (hover: hover) { .gnav-back:hover { color: #fff; } }
+.gnav-back:active { color: #fff; }
 
 .gnav-count {
   font-size: 0.72rem;
@@ -221,7 +223,8 @@ body.g-lb-open { overflow: hidden; }
   padding-bottom: 2px;
   transition: border-color 0.2s;
 }
-.g-section-link:hover { border-color: #fff; }
+@media (hover: hover) { .g-section-link:hover { border-color: #fff; } }
+.g-section-link:active { border-color: #fff; }
 
 /* ── CARDS SCROLL AREA ────────────────────────────────────────── */
 
@@ -233,6 +236,10 @@ body.g-lb-open { overflow: hidden; }
   align-items: center;
   gap: 16px;
   padding: 3rem 3rem 3rem 2.5rem;
+
+  /* touch carousel: momentum scroll + snap to each card */
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
 
   /* hide scrollbar but keep functional */
   scrollbar-width: none;
@@ -249,6 +256,7 @@ body.g-lb-open { overflow: hidden; }
   align-items: flex-start;
   gap: 10px;
   cursor: pointer;
+  scroll-snap-align: start;
 }
 
 .g-card-label {
@@ -289,10 +297,13 @@ body.g-lb-open { overflow: hidden; }
               box-shadow 0.32s ease;
 }
 
-.g-card-slot:hover .g-card {
-  transform: scale(1.045) translateY(-8px);
-  box-shadow: 0 28px 56px rgba(0,0,0,0.38);
+@media (hover: hover) {
+  .g-card-slot:hover .g-card {
+    transform: scale(1.045) translateY(-8px);
+    box-shadow: 0 28px 56px rgba(0,0,0,0.38);
+  }
 }
+.g-card-slot:active .g-card { box-shadow: 0 18px 40px rgba(0,0,0,0.34); }
 
 /* The canvas/img fills the card */
 .g-card canvas,
@@ -320,7 +331,23 @@ body.g-lb-open { overflow: hidden; }
   padding: 1.5rem;
 }
 
-.g-card-slot:hover .g-card-overlay { opacity: 1; }
+@media (hover: hover) {
+  .g-card-slot:hover .g-card-overlay { opacity: 1; }
+}
+
+/* Touch devices have no hover: instead of fully covering the portrait, show
+   a slim CTA bar pinned to the bottom of the card so it stays tappable. */
+@media (hover: none) {
+  .g-card-overlay {
+    opacity: 1;
+    background: linear-gradient(to top, rgba(196,30,58,0.94) 0%, rgba(196,30,58,0.78) 28%, rgba(196,30,58,0) 60%);
+    justify-content: flex-end;
+    padding: 0 0 0.85rem;
+  }
+  .g-card-overlay-chinese,
+  .g-card-overlay-name { display: none; }
+  .g-card-overlay-cta { margin-top: 0; }
+}
 
 .g-card-overlay-name {
   font-size: 1.1rem;
@@ -461,8 +488,8 @@ body.g-lb-open { overflow: hidden; }
   position: fixed;
   top: 1.25rem;
   right: 1.5rem;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1.5px solid rgba(255,255,255,0.3);
   background: rgba(0,0,0,0.5);
@@ -647,9 +674,18 @@ body.g-lb-open { overflow: hidden; }
   .g-lb-actions { flex-direction: column; gap: 0.4rem; flex-shrink: 0; }
   .g-lb-btn-profile, .g-lb-btn-back {
     width: auto;
-    padding: 0.45rem 0.85rem;
-    font-size: 0.75rem;
+    padding: 0.6rem 0.95rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    font-size: 0.78rem;
     border-radius: 5px;
   }
   .g-lb-zoom-hint { display: none; }
+}
+
+/* ── SMALL PHONES ─────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .g-section-left { padding: 3rem 1.25rem 1.75rem; }
+  .g-cards { padding: 1.5rem 1.25rem; gap: 14px; }
 }
