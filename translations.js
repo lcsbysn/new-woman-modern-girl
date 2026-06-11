@@ -230,6 +230,15 @@ const UI = {
 
     // Work-in-progress banner
     wip_banner: "Work in Progress — diese Website wird laufend erweitert und überarbeitet.",
+
+    // Impressum
+    impressum_link: "Impressum",
+    impressum_title: "Impressum",
+    impressum_sub: "Angaben gemäß § 5 DDG (ehem. § 5 TMG).",
+    impressum_provider: "Diensteanbieter",
+    impressum_address: "Anschrift",
+    impressum_contact: "Kontakt",
+    impressum_responsible: "Verantwortlich für den Inhalt",
   },
 
   en: {
@@ -462,5 +471,14 @@ const UI = {
 
     // Work-in-progress banner
     wip_banner: "Work in progress — this website is being continuously expanded and revised.",
+
+    // Impressum
+    impressum_link: "Imprint",
+    impressum_title: "Imprint",
+    impressum_sub: "Information pursuant to § 5 DDG (formerly § 5 TMG).",
+    impressum_provider: "Service provider",
+    impressum_address: "Address",
+    impressum_contact: "Contact",
+    impressum_responsible: "Responsible for content",
   }
 };

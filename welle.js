@@ -15,7 +15,7 @@
     { id: 'chen-hengzhe',  name: 'Chen Hengzhe',  chinesisch: '陈衡哲' },
     { id: 'xiao-hong',     name: 'Xiao Hong',     chinesisch: '萧红'   },
     { id: 'kang-keqing',   name: 'Kang Keqing',   chinesisch: '康克清' },
-    { id: 'xie-caizhen',   name: 'Xie Caizhen',   chinesisch: '谢采真' },
+    { id: 'xie-caizhen',   name: 'Xie Caizhen',   chinesisch: '谢采贞' },
     { id: 'ruan-lingyu',   name: 'Ruan Lingyu',   chinesisch: '阮玲玉' },
     { id: 'hu-die',        name: 'Hu Die',        chinesisch: '胡蝶'   },
     /* HIDDEN – im Code erhalten, nicht angezeigt:

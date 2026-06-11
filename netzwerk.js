@@ -155,7 +155,7 @@ const suchePersonen = [
   {
     id:         'xie-caizhen',
     name:       'Xie Caizhen',
-    chinesisch: '谢采真',
+    chinesisch: '谢采贞',
     stats:      '0 deutschsprachige Treffer',
     ergebnisse: [],
     hinweis:    'Keine deutschsprachigen Quellen auffindbar. In der englischen Wikipedia existiert ein kurzer Stub-Artikel von wenigen Sätzen. Xie Caizhen inszenierte 1925 den ersten bekannten chinesischen Film unter weiblicher Regie — und ist in westlichen Sprachen praktisch inexistent.',

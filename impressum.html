@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum – Frauen der chinesischen Republikzeit</title>
+  <meta name="description" content="Impressum der digitalen Begleitausstellung zum Seminar 'Neue Frauen' und 'Moderne Mädchen'.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="lang.css">
+  <style>
+    /* Impressum — labelled blocks, values left blank for now */
+    .imp-block { margin-bottom: 2.25rem; }
+    .imp-block h2 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin: 0 0 0.6rem;
+    }
+    .imp-value {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text);
+      min-height: 1.8em;
+      white-space: pre-line;
+    }
+    .imp-value:empty::before {
+      content: "—";
+      color: var(--border);
+    }
+  </style>
+</head>
+<body class="landing-body">
+  <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+
+  <div class="wip-banner" role="status" data-i18n="wip_banner">Work in Progress — diese Website wird laufend erweitert und überarbeitet.</div>
+
+  <!-- NAVBAR -->
+  <nav class="index-nav" id="indexNav">
+    <a href="index.html" class="index-nav-back" data-i18n="nav_back">← Übersicht</a>
+    <div id="lang-toggle">
+      <button onclick="setLang('de')" class="lang-btn" data-lang="de" aria-pressed="true">DE</button>
+      <button onclick="setLang('en')" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </nav>
+
+  <!-- ── IMPRESSUM ─────────────────────────────────── -->
+  <section class="lp-section" id="main-content">
+    <div class="lp-container">
+      <h1 class="lp-section-title" data-i18n="impressum_title">Impressum</h1>
+      <p class="lp-section-subtitle" data-i18n="impressum_sub">Angaben gemäß § 5 DDG (ehem. § 5 TMG).</p>
+
+      <div class="imp-block">
+        <h2 data-i18n="impressum_provider">Diensteanbieter</h2>
+        <div class="imp-value"></div>
+      </div>
+
+      <div class="imp-block">
+        <h2 data-i18n="impressum_address">Anschrift</h2>
+        <div class="imp-value"></div>
+      </div>
+
+      <div class="imp-block">
+        <h2 data-i18n="impressum_contact">Kontakt</h2>
+        <div class="imp-value"></div>
+      </div>
+
+      <div class="imp-block">
+        <h2 data-i18n="impressum_responsible">Verantwortlich für den Inhalt</h2>
+        <div class="imp-value"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────── -->
+  <footer class="lp-footer">
+    <div class="lp-container">
+      <p>Entstanden im Seminar <em>„Neue Frauen" und „Moderne Mädchen": Weiblichkeitsentwürfe in der chinesischen Republikzeit</em> · SoSe 2026</p>
+    </div>
+  </footer>
+
+  <script src="lang.js"></script>
+  <script src="translations.js"></script>
+</body>
+</html>

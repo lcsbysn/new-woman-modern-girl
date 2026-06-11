@@ -18,7 +18,7 @@ const FRAUEN = [
   // ── Revolutionärinnen & Aktivistinnen ──
   { id: 'kang-keqing',   name: 'Kang Keqing',   chinesisch: '康克清', lebensdaten: '1911–1992', rolle: 'Generale der Roten Armee · Präsidentin der Frauenföderation' },
   // ── Filmemacherinnen & Schauspielerinnen ──
-  { id: 'xie-caizhen',   name: 'Xie Caizhen',   chinesisch: '谢采真', lebensdaten: 'ca. 1900–?', rolle: 'Erste Filmregisseurin Chinas' },
+  { id: 'xie-caizhen',   name: 'Xie Caizhen',   chinesisch: '谢采贞', lebensdaten: 'ca. 1900–?', rolle: 'Erste Filmregisseurin Chinas' },
   { id: 'ruan-lingyu',   name: 'Ruan Lingyu',   chinesisch: '阮玲玉', lebensdaten: '1910–1935', rolle: 'Schauspielerin · Ikone des Stummfilms' },
   { id: 'hu-die',        name: 'Hu Die',         chinesisch: '胡蝶',   lebensdaten: '1908–1989', rolle: 'Erste Filmkönigin Chinas' },
   /* HIDDEN – im Code erhalten, nicht angezeigt:
@@ -131,7 +131,7 @@ function makeXiangJingyuPoster(scale) {
     <!-- 1. Masthead overline -->
     <div style="position:absolute;top:30px;left:34px;right:34px;display:flex;justify-content:space-between;font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:${P.muted}">
       <span>Modern Women · Republican China 1911 – 1949</span>
-      <span>Folio № 03 / 12</span>
+      <span>Folio № 04 / 11</span>
     </div>
 
     <!-- Chinese name + right meta -->
@@ -273,6 +273,269 @@ function makeXiangJingyuPoster(scale) {
   return wrap;
 }
 
+// ── XIE CAIZHEN — LETTERBOXD POSTER CARD ─────────────────────────
+// Ported from the design canvas (poster-xie.jsx + poster-xie-data.jsx).
+// A "director profile" in the visual language of a film-logging site:
+// dark UI, green/orange/blue accent dots, star ratings, ghost tiles for
+// the lost film. Accepts a scale parameter so the lightbox can enlarge it.
+
+function makeXieCaizhenPoster(scale) {
+  scale = scale || 0.36;
+  const W = Math.round(700 * scale);
+  const H = Math.round(990 * scale);
+
+  const wrap = document.createElement('div');
+  wrap.style.cssText = `width:${W}px;height:${H}px;overflow:hidden;background:#14181c;position:relative;flex-shrink:0`;
+
+  const L = {
+    bg: '#14181c', surface: '#1b2128', card: '#2c3440',
+    line: 'rgba(255,255,255,0.085)', white: '#e9eef2', body: '#9bb0c0',
+    muted: '#697b89', green: '#00e054', orange: '#ff8000', blue: '#40bcf4',
+  };
+  const sans  = "'Hanken Grotesk',system-ui,sans-serif";
+  const serif = "'Newsreader',Georgia,serif";
+  const mono  = "'JetBrains Mono',monospace";
+  const sc    = "'Noto Serif SC',serif";
+
+  // Footnote marker — small raised green superscript.
+  const N = (n) => `<sup style="color:${L.green};font-weight:700;font-size:.62em;margin-left:1px;line-height:0;font-family:${sans}">${n}</sup>`;
+
+  // Signature three-dot mark (green · orange · blue).
+  const dots = (size, gap) => `
+    <span style="display:inline-flex;gap:${gap}px;align-items:center;vertical-align:middle">
+      <span style="width:${size}px;height:${size}px;border-radius:50%;background:${L.green};display:inline-block"></span>
+      <span style="width:${size}px;height:${size}px;border-radius:50%;background:${L.orange};display:inline-block"></span>
+      <span style="width:${size}px;height:${size}px;border-radius:50%;background:${L.blue};display:inline-block"></span>
+    </span>`;
+
+  const stars = (size) => `<span style="color:${L.green};font-size:${size}px;letter-spacing:1px;line-height:1">★★★★★</span>`;
+
+  // Role chip — DIR/WRI/LEAD filled, ACT outlined.
+  const ROLE_COLORS = { DIR: L.green, WRI: L.orange, LEAD: L.blue, ACT: L.muted };
+  const roleChip = (r) => `
+    <span style="font-family:${sans};font-size:6.5px;font-weight:700;letter-spacing:.12em;
+      color:${r === 'ACT' ? L.body : '#0d1014'};
+      background:${r === 'ACT' ? 'transparent' : ROLE_COLORS[r]};
+      border:${r === 'ACT' ? `0.5px solid ${L.muted}` : 'none'};
+      border-radius:2px;padding:1.5px 3px;line-height:1;display:inline-block">${r}</span>`;
+
+  const sectionLabel = (text, color) =>
+    `<div style="font-family:${sans};font-size:8.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:${color || L.muted}">${text}</div>`;
+
+  const STATS = [
+    { k: '01',     l: 'Film Directed',    c: L.green  },
+    { k: '05',     l: 'Films Acted',      c: L.white  },
+    { k: '01',     l: 'Screenplay',       c: L.white  },
+    { k: '8 days', l: 'Theatre Run',      c: L.white  },
+    { k: '00',     l: 'Surviving Prints', c: L.orange },
+  ];
+
+  const FILMS = [
+    { zh: '弟弟',       en: 'Little Brother',           year: '1924', roles: ['ACT'] },
+    { zh: '苦学生',     en: 'The Student’s Hard Life',  year: '1925', roles: ['ACT'] },
+    { zh: '孝女复仇记', en: 'Filial Girl Takes Revenge', year: '1925', roles: ['ACT'] },
+    { zh: '重返故乡',   en: 'Return to the Hometown',   year: '1925', roles: ['ACT'] },
+    { zh: '小公子',     en: 'Little Master',            year: '1925', roles: ['ACT'] },
+    { zh: '孤雏悲声',   en: 'An Orphan’s Cry',          year: '1925', roles: ['DIR', 'WRI', 'LEAD'], hero: true },
+  ];
+
+  const TL = [
+    { y: 'c.1900s', e: 'Born in Hankou; a sister, a father who backs her.' },
+    { y: '1920',    e: 'Acts at the Shanghai Shadow Play Company.' },
+    { y: '1924',    e: 'First screen credit, Little Brother.' },
+    { y: '1925',    e: 'Writes, directs & stars in An Orphan’s Cry.' },
+    { y: '1925',    e: 'Premieres 20 Dec at the Victory Theatre.' },
+    { y: '1926',    e: 'Vanishes from the press.' },
+    { y: '1944',    e: 'A last newspaper notice, then silence.' },
+    { y: 'unknown', e: 'Date and place of death unrecorded.' },
+  ];
+
+  const LENS = [
+    { label: 'Can the Subaltern Speak?', by: 'Spivak, 1988', cite: 8,
+      body: 'Xie speaks once, in 1925, and the archive loses the tape. The film is gone, her birth and death dates are gone; what is left is other people’s newspaper paragraphs. The question stays open on purpose.' },
+    { label: 'Becoming a Director', by: 'de Beauvoir, 1949', cite: 6,
+      body: '“One is not born, but becomes, a woman.” In a single year Xie becomes actress, writer and director — authoring herself into a role the industry had reserved for men, and signing it.' },
+    { label: 'Authorship as Performance', by: 'Butler, 1990', cite: 7,
+      body: 'Gender is a thing you do until it looks like a thing you are. Xie performs womanhood on screen for hire, then steps behind the camera and performs “the director” — a part no Chinese woman had been cast in.' },
+    { label: 'The New Woman on Screen', by: 'Stevens, 2003', cite: 9,
+      body: 'Republican cinema kept two women in stock: the New Woman it admired, the Modern Girl it feared. Xie did not only play the type — she got to frame it, deciding for once where the camera stood.' },
+  ];
+
+  const SOURCES = [
+    [1, 'Women Film Pioneers Project, “Xie Caizhen.” New York: Columbia University Libraries, 2018.'],
+    [2, 'Ye, Tan & Zhu, Yun (2012). Historical Dictionary of Chinese Cinema. Plymouth: Scarecrow Press.'],
+    [3, 'Shenbao 申報 (Shanghai). Production reports & notices on An Orphan’s Cry, Sept.–Dec. 1925.'],
+    [4, 'Hu, Lidan (2018). “A Brief History of Women’s Film-making in Mainland China.” MCLC Resource Center.'],
+    [5, 'Da Gong Wan Bao 大公晚報 (1944). Brief notice on Xie Caizhen.'],
+    [6, 'de Beauvoir, S. (1949). Le Deuxième Sexe. Paris: Gallimard.'],
+    [7, 'Butler, J. (1990). Gender Trouble: Feminism and the Subversion of Identity. New York: Routledge.'],
+    [8, 'Spivak, G. C. (1988). “Can the Subaltern Speak?”, in Marxism and the Interpretation of Culture. Urbana: U. of Illinois Press.'],
+    [9, 'Stevens, S. E. (2003). “Figuring Modernity: The New Woman and the Modern Girl in Republican China.” NWSA Journal 15(3).'],
+  ];
+
+  const inner = document.createElement('div');
+  inner.style.cssText = `
+    width:700px;height:990px;
+    transform:scale(${scale});transform-origin:0 0;
+    background:${L.bg};color:${L.body};
+    font-family:${sans};
+    position:relative;overflow:hidden;
+  `;
+
+  inner.innerHTML = `
+    <!-- hairline frame -->
+    <div style="position:absolute;inset:16px;border:0.5px solid ${L.line};pointer-events:none;border-radius:2px"></div>
+
+    <!-- 1. Masthead -->
+    <div style="position:absolute;top:28px;left:34px;right:34px;display:flex;justify-content:space-between;align-items:center;font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:${L.muted}">
+      <span>Modern Women · Republican China 1911 – 1949</span>
+      <span style="display:flex;align-items:center;gap:10px">${dots(5, 3)} Folio № 09 / 11</span>
+    </div>
+    <div style="position:absolute;top:50px;left:34px;right:34px;height:0.5px;background:${L.line}"></div>
+
+    <!-- 2. Identity header -->
+    <div style="position:absolute;top:64px;left:34px;right:34px;display:flex;gap:18px;align-items:flex-start">
+      <div style="width:78px;height:78px;border-radius:50%;flex-shrink:0;overflow:hidden;background:${L.card};border:0.5px solid ${L.line}">
+        <img src="images/xie-portrait.png" alt="Xie Caizhen" style="width:100%;height:100%;object-fit:cover;object-position:center 16%">
+      </div>
+      <div style="flex:1;padding-top:2px">
+        <div style="font-size:8px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:${L.green};margin-bottom:5px">Director · Actress · Writer</div>
+        <div style="font-family:${serif};font-size:44px;font-weight:500;line-height:.96;color:${L.white};letter-spacing:-.01em">Xie Caizhen</div>
+        <div style="font-size:9.5px;color:${L.body};margin-top:7px;letter-spacing:.04em">Xiè Cǎizhēn · <span style="color:${L.muted}">b. Hankou, c.1900s — d. unknown</span></div>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-family:${sc};font-size:56px;font-weight:600;line-height:.9;color:${L.green};letter-spacing:.02em">谢采贞</div>
+        <div style="font-size:8px;color:${L.muted};letter-spacing:.16em;text-transform:uppercase;margin-top:6px">First woman to direct in China</div>
+      </div>
+    </div>
+
+    <!-- 3. Stats strip -->
+    <div style="position:absolute;top:162px;left:34px;right:34px;display:flex;border-top:0.5px solid ${L.line};border-bottom:0.5px solid ${L.line}">
+      ${STATS.map((s, i) => `
+        <div style="flex:1;padding:9px 0 8px;text-align:center;border-left:${i ? `0.5px solid ${L.line}` : 'none'}">
+          <div style="font-family:${serif};font-size:22px;line-height:1;color:${s.c}">${s.k}</div>
+          <div style="font-size:7px;letter-spacing:.14em;text-transform:uppercase;color:${L.muted};margin-top:4px">${s.l}</div>
+        </div>`).join('')}
+    </div>
+
+    <!-- 4. Hero: the film -->
+    <div style="position:absolute;top:222px;left:34px;right:34px;display:flex;gap:18px">
+      <div style="width:132px;height:188px;position:relative;overflow:hidden;border:0.5px solid ${L.line};border-radius:3px;flex-shrink:0;background:${L.card}">
+        <img src="images/orphans-cry-still.png" alt="Still from An Orphan’s Cry, 1925" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(1.12) contrast(1.04)">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,transparent 22%,transparent 52%,rgba(0,0,0,.82) 100%)"></div>
+        <div style="position:absolute;top:6px;left:6px;font-size:6.5px;font-weight:700;letter-spacing:.1em;color:#0d1014;background:${L.orange};border-radius:2px;padding:2px 4px">PRINT LOST</div>
+        <div style="position:absolute;bottom:7px;left:8px;right:8px;font-family:${mono};font-size:6px;letter-spacing:.06em;color:${L.white};line-height:1.4">Production still · 孤雏悲声 · 1925</div>
+      </div>
+      <div style="flex:1">
+        ${sectionLabel('The Film')}
+        <div style="font-family:${serif};font-size:30px;font-weight:500;color:${L.white};line-height:1;margin-top:7px">
+          An Orphan’s Cry <span style="font-family:${sc};font-size:20px;color:${L.body}">孤雏悲声</span> <span style="color:${L.muted};font-weight:400;font-size:22px">1925</span>
+        </div>
+        <div style="font-size:10px;margin-top:8px;color:${L.body}">Directed by <span style="color:${L.blue};font-weight:600">Xie Caizhen</span> · Southern Star Film Co.</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:9px">
+          ${stars(18)}
+          <span style="font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:${L.green};font-weight:700">First of its kind</span>
+          <span style="display:inline-flex;align-items:flex-end;gap:1.5px;height:16px;margin-left:2px">
+            ${[4, 6, 5, 9, 14, 16].map((h) => `<span style="width:3px;height:${h}px;background:${L.green};opacity:.55;display:inline-block"></span>`).join('')}
+          </span>
+        </div>
+        <div style="font-size:9.5px;line-height:1.45;color:${L.body};margin-top:10px;max-width:360px">
+          Two orphans, a dead father framed by a stepmother, an estranged fortune — a family melodrama in the key of 1925, and the only film its studio would ever make.${N(2)}
+        </div>
+        <div style="display:flex;gap:6px;margin-top:11px;flex-wrap:wrap">
+          ${['Silent', 'Melodrama', 'Family', 'Shanghai'].map((t) => `<span style="font-size:7.5px;letter-spacing:.06em;color:${L.body};background:${L.card};border:0.5px solid ${L.line};border-radius:3px;padding:3px 7px">${t}</span>`).join('')}
+          <span style="font-size:7.5px;font-weight:700;letter-spacing:.1em;color:#0d1014;background:${L.orange};border-radius:3px;padding:3px 7px">LOST FILM</span>
+        </div>
+        <div style="font-size:8px;color:${L.muted};margin-top:10px;letter-spacing:.04em">Premiered 20 Dec 1925 · Victory Theatre, Shanghai · held eight days when three was the norm.${N(1)}</div>
+      </div>
+    </div>
+
+    <!-- 5. The review (biography) -->
+    <div style="position:absolute;top:430px;left:34px;right:34px">
+      <div style="display:flex;align-items:center;gap:10px;padding-bottom:7px;border-bottom:0.5px solid ${L.line}">
+        ${stars(12)}
+        <span style="font-size:9px;color:${L.body}">Review by <span style="color:${L.white};font-weight:700">Gallery of Modern Women</span></span>
+        <span style="font-size:8px;color:${L.muted};letter-spacing:.1em;text-transform:uppercase">· Watched 20 Dec 1925</span>
+        <span style="margin-left:auto;font-size:9px;color:${L.orange}">♥ <span style="color:${L.body}">1,925 likes</span></span>
+      </div>
+      <div style="margin-top:9px;column-count:2;column-gap:22px;font-size:9.1px;line-height:1.5;color:${L.body};text-align:justify;hyphens:auto">
+        <p style="margin:0">
+          <span style="font-family:${serif};font-size:40px;line-height:.8;float:left;margin-right:6px;margin-top:3px;color:${L.green};font-weight:500">H</span>ere is a film you will never see. <em>An Orphan’s Cry</em> screens once, in the winter of 1925, and then the only print walks out of history and does not come back.${N(4)} What survives is a director and a fact: Xie Caizhen is the first woman in China to sit in the chair.${N(1)}
+        </p>
+        <p style="margin:.5em 0 0">
+          She arrives the usual way — as a face. She acts for Dan Duyu at the Shanghai Shadow Play Company: the daughter, the sister, the filial girl who takes revenge, the parts a young actress is handed.${N(1)} Then, in a single astonishing year, she writes a melodrama, casts herself as the lead, and directs it for a company that will make exactly one film and fold.${N(2)}
+        </p>
+        <p style="margin:.5em 0 0">
+          By every account it is a hit. It plays eight days when three is the norm; a fifth of the house is foreign; people come, the papers say, because the director is a woman and the story is complicated.${N(3)} For a few weeks in Shanghai, “directed by” and a woman’s name share a poster, and the city cannot get over it.
+        </p>
+        <p style="margin:.5em 0 0">
+          And then nothing. After 1926 her name drops out of the press; it surfaces once in 1944 and is gone.${N(5)} We do not know when she was born or when she died. The film is lost, which means the thing she made can’t be graded — only the act of making it. Five stars for the act. The rest is an empty frame, and that is the review.
+        </p>
+      </div>
+    </div>
+
+    <!-- 6. Through the lens (critical cards) -->
+    <div style="position:absolute;top:612px;left:34px;right:34px">
+      ${sectionLabel('Through the Lens')}
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:8px">
+        ${LENS.map((t) => `
+          <div style="border-top:1.5px solid ${L.green};padding-top:6px">
+            <div style="font-size:8.6px;font-weight:700;color:${L.white};line-height:1.2;margin-bottom:2px">${t.label}${N(t.cite)}</div>
+            <div style="font-family:${serif};font-style:italic;font-size:8px;color:${L.muted};margin-bottom:5px">${t.by}</div>
+            <div style="font-size:7.2px;line-height:1.42;color:${L.body};text-align:justify;hyphens:auto">${t.body}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <!-- 7. Filmography -->
+    <div style="position:absolute;top:738px;left:34px;right:34px">
+      ${sectionLabel('Filmography · 1924 – 1925')}
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-top:7px">
+        ${FILMS.map((f) => `
+          <div>
+            <div style="position:relative;height:50px;border-radius:3px;overflow:hidden;border:${f.hero ? `1px solid ${L.green}` : `0.5px solid ${L.line}`};background:repeating-linear-gradient(135deg,${L.surface} 0 7px,${L.card} 7px 14px);display:flex;align-items:center;justify-content:center">
+              <span style="font-family:${sc};font-size:${f.hero ? 15 : 13}px;color:${f.hero ? L.green : L.body};text-align:center;line-height:1.05;padding:4px">${f.zh}</span>
+            </div>
+            <div style="font-size:7px;color:${L.muted};margin-top:4px;letter-spacing:.04em">${f.year}</div>
+            <div style="font-size:7.3px;color:${L.body};line-height:1.12;margin-top:1px;min-height:14px">${f.en}</div>
+            <div style="display:flex;gap:3px;margin-top:3px;flex-wrap:wrap">${f.roles.map((r) => roleChip(r)).join('')}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <!-- 8. Life timeline -->
+    <div style="position:absolute;top:852px;left:34px;right:34px">
+      <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:6px;border-top:0.5px solid ${L.line};padding-top:7px">
+        ${TL.map((t) => `
+          <div>
+            <div style="font-family:${serif};font-size:11px;color:${L.green};line-height:1;margin-bottom:3px">${t.y}</div>
+            <div style="font-size:6.3px;line-height:1.3;color:${L.body}">${t.e}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <!-- 9. Sources + wordmark -->
+    <div style="position:absolute;top:896px;left:34px;right:34px">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:4px;border-bottom:0.5px solid ${L.line}">
+        ${sectionLabel('Sources')}
+        <span style="display:flex;align-items:center;gap:8px">
+          ${dots(5, 3)}
+          <span style="font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:${L.white};font-weight:700">Gallery of Modern Women</span>
+        </span>
+      </div>
+      <div style="column-count:4;column-gap:12px;margin-top:4px;font-size:6px;line-height:1.28;color:${L.muted}">
+        ${SOURCES.map(([n, ref]) => `
+          <div style="break-inside:avoid;margin-bottom:1px">
+            <span style="color:${L.green};font-weight:700">${n}.</span> ${ref}
+          </div>`).join('')}
+      </div>
+    </div>
+  `;
+
+  wrap.appendChild(inner);
+  return wrap;
+}
+
 // ── BUILD SECTIONS ────────────────────────────────────────────────
 // Groups the 12 women into themed sections, each with its own
 // bold background color — the core Van Gogh Museum design pattern.
@@ -347,6 +610,10 @@ function buildGallery() {
         card.style.overflow = 'hidden';
         card.style.height   = 'auto';   // poster is 356 px tall, not 375
         card.appendChild(makeXiangJingyuPoster());
+      } else if (frau.id === 'xie-caizhen') {
+        card.style.overflow = 'hidden';
+        card.style.height   = 'auto';
+        card.appendChild(makeXieCaizhenPoster());
       } else {
         const canvas = makeCardCanvas(frau);
         canvas.style.display = 'block';
@@ -409,6 +676,7 @@ function buildGallery() {
       <a href="index.html" class="g-outro-link">${T('galerie_outro_back')}</a>
       <a href="sichtbarkeit.html" class="g-outro-link">${T('galerie_link_memory')}</a>
       <a href="quiz.html" class="g-outro-link">${T('galerie_link_quiz')}</a>
+      <a href="impressum.html" class="g-outro-link">${T('impressum_link')}</a>
     </div>
   `;
   main.appendChild(outro);
@@ -720,12 +988,14 @@ function openLightbox(frau) {
     ? Math.max(200, window.innerHeight - 120)
     : Math.floor(window.innerHeight * 0.88);
 
-  if (frau.id === 'xiang-jingyu') {
+  if (frau.id === 'xiang-jingyu' || frau.id === 'xie-caizhen') {
     // Fit the 700×990 poster into avW × avH (whichever axis is the bottleneck)
     const scaleByH  = avH / 990;
     const scaleByW  = avW / 700;
     const dynScale  = parseFloat(Math.min(scaleByH, scaleByW).toFixed(3));
-    const poster    = makeXiangJingyuPoster(dynScale);
+    const poster    = frau.id === 'xiang-jingyu'
+      ? makeXiangJingyuPoster(dynScale)
+      : makeXieCaizhenPoster(dynScale);
     inner.appendChild(poster);
     imageWrap.style.width  = Math.round(700 * dynScale) + 'px';
     imageWrap.style.height = Math.round(990 * dynScale) + 'px';

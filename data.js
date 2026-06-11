@@ -953,7 +953,7 @@ const frauen = {
   "xie-caizhen": {
     id: "xie-caizhen",
     name: "Xie Caizhen",
-    nameChinesisch: "谢采真",
+    nameChinesisch: "谢采贞",
     lebensdaten: "ca. 1900–?",
     rolle: "Filmregisseurin · Schauspielerin · Erste bekannte Filmregisseurin Chinas",
     herkunft: "Hankou",
@@ -1002,7 +1002,7 @@ const frauen = {
 
     netzwerk: {
       knoten: [
-        { id: "xie-caizhen", name: "Xie Caizhen", chinesisch: "谢采真", typ: "hauptperson", verbindung: "" },
+        { id: "xie-caizhen", name: "Xie Caizhen", chinesisch: "谢采贞", typ: "hauptperson", verbindung: "" },
         { id: "dan-duyu", name: "Dan Duyu", chinesisch: "但杜宇", typ: "person", verbindung: "Regisseur und Studiogründer, früher Förderer Xie Caizhens" },
         { id: "nanxing", name: "Nanxing Film Company", chinesisch: "南星影片公司", typ: "organisation", verbindung: "Produktionsfirma von 'An Orphan's Cry'" },
         { id: "ruan-lingyu", name: "Ruan Lingyu", chinesisch: "阮玲玉", typ: "verweis", verbindung: "Jüngere Zeitgenossin, die das Bild der 'Neuen Frau' auf der Leinwand prägte" },
@@ -1077,7 +1077,7 @@ const frauen = {
     netzwerk: {
       knoten: [
         { id: "ruan-lingyu", name: "Ruan Lingyu", chinesisch: "阮玲玉", typ: "hauptperson", verbindung: "" },
-        { id: "xie-caizhen", name: "Xie Caizhen", chinesisch: "谢采真", typ: "verweis", verbindung: "Wegbereiterin — erste Filmregisseurin Chinas, ein Jahrzehnt vor Ruan Lingyus Aufstieg" },
+        { id: "xie-caizhen", name: "Xie Caizhen", chinesisch: "谢采贞", typ: "verweis", verbindung: "Wegbereiterin — erste Filmregisseurin Chinas, ein Jahrzehnt vor Ruan Lingyus Aufstieg" },
         { id: "ding-ling", name: "Ding Ling", chinesisch: "丁玲", typ: "verweis", verbindung: "Zeitgenössische feministische Schriftstellerin; 'New Women' berührt ähnliche Themen wie ihr Werk" },
         { id: "hu-die", name: "Hu Die", chinesisch: "胡蝶", typ: "verweis", verbindung: "Zeitgenossin und Mitbewerbin — beide prägen das Bild des weiblichen Filmstars der 1930er" },
         { id: "lianhua", name: "Lianhua Film Company", chinesisch: "联华影业", typ: "organisation", verbindung: "Produktionsfirma ihrer bedeutendsten Filme" },
@@ -1154,7 +1154,7 @@ const frauen = {
       knoten: [
         { id: "hu-die", name: "Hu Die", chinesisch: "胡蝶", typ: "hauptperson", verbindung: "" },
         { id: "ruan-lingyu", name: "Ruan Lingyu", chinesisch: "阮玲玉", typ: "verweis", verbindung: "Zeitgenossin — oft als die zwei Pole des Shanghaier Stummfilmkinos beschrieben" },
-        { id: "xie-caizhen", name: "Xie Caizhen", chinesisch: "谢采真", typ: "verweis", verbindung: "Wegbereiterin der Filmbranche für Frauen" },
+        { id: "xie-caizhen", name: "Xie Caizhen", chinesisch: "谢采贞", typ: "verweis", verbindung: "Wegbereiterin der Filmbranche für Frauen" },
         { id: "mingxing", name: "Mingxing Film Company", chinesisch: "明星影片公司", typ: "organisation", verbindung: "Produktionsfirma ihrer frühen Karriere" },
         { id: "yinghou", name: "Filmkönigin (影后)", chinesisch: "影后", typ: "bewegung", verbindung: "Durch Publikumsabstimmung vergebener Titel — ein neues Verhältnis zwischen Stars und Öffentlichkeit" }
       ],
@@ -1399,7 +1399,7 @@ const globalNetzwerk = {
     { id: "cai-chang",     name: "Cai Chang",      chinesisch: "蔡畅",   typ: "frau",  profil: true },
     { id: "eileen-chang",  name: "Eileen Chang",   chinesisch: "张爱玲", typ: "frau",  profil: true },
     { id: "zhang-ruoming", name: "Zhang Ruoming",  chinesisch: "张若名", typ: "frau",  profil: true },
-    { id: "xie-caizhen",  name: "Xie Caizhen",   chinesisch: "谢采真", typ: "frau",  profil: true },
+    { id: "xie-caizhen",  name: "Xie Caizhen",   chinesisch: "谢采贞", typ: "frau",  profil: true },
     { id: "ruan-lingyu",  name: "Ruan Lingyu",   chinesisch: "阮玲玉", typ: "frau",  profil: true },
     { id: "hu-die",       name: "Hu Die",         chinesisch: "胡蝶",   typ: "frau",  profil: true },
     { id: "chen-hengzhe", name: "Chen Hengzhe",  chinesisch: "陈衡哲", typ: "frau",  profil: true },
@@ -1536,7 +1536,7 @@ const wikipediaVergleich = [
   { id: "xiao-hong",     name: "Xiao Hong",      chinesisch: "萧红",   typ: "frau",    wikiEn: "Xiao_Hong",          wikiZh: "萧红" },
   { id: "kang-keqing",   name: "Kang Keqing",    chinesisch: "康克清", typ: "frau",    wikiEn: "Kang_Keqing",        wikiZh: "康克清" },
   /* HIDDEN: { id: "eileen-chang",  name: "Eileen Chang",   chinesisch: "张爱玲", typ: "frau",    wikiEn: "Eileen_Chang",       wikiZh: "张爱玲" }, */
-  { id: "xie-caizhen",   name: "Xie Caizhen",    chinesisch: "谢采真", typ: "frau",    wikiEn: "Xie_Caizhen",        wikiZh: "谢采真" },
+  { id: "xie-caizhen",   name: "Xie Caizhen",    chinesisch: "谢采贞", typ: "frau",    wikiEn: "Xie_Caizhen",        wikiZh: "谢采贞" },
   { id: "ruan-lingyu",   name: "Ruan Lingyu",    chinesisch: "阮玲玉", typ: "frau",    wikiEn: "Ruan_Lingyu",        wikiZh: "阮玲玉" },
   { id: "hu-die",        name: "Hu Die",         chinesisch: "胡蝶",   typ: "frau",    wikiEn: "Hu_Die",             wikiZh: "胡蝶" },
   // ── Männer der Ära (Kontrastmaßstab) ────────────────────────────────
@@ -1583,7 +1583,7 @@ const gedaechtnisMatrix = [
   { id: "eileen-chang",  name: "Eileen Chang",  chinesisch: "张爱玲", kategorie: "literatur",
     wikiDE: true,  wikiEN: true,  wikiZH: true,  verfilmt: true,  denkmal: false },
   // ── Filmemacherinnen & Schauspielerinnen ──────────────────────────
-  { id: "xie-caizhen",   name: "Xie Caizhen",   chinesisch: "谢采真", kategorie: "film",
+  { id: "xie-caizhen",   name: "Xie Caizhen",   chinesisch: "谢采贞", kategorie: "film",
     wikiDE: false, wikiEN: false, wikiZH: false, verfilmt: false, denkmal: false },
   { id: "ruan-lingyu",   name: "Ruan Lingyu",   chinesisch: "阮玲玉", kategorie: "film",
     wikiDE: true,  wikiEN: true,  wikiZH: true,  verfilmt: true,  denkmal: true  },

@@ -6,6 +6,9 @@ CLAUDE.md
 # Archive
 *.zip
 
+# Plakat-Designquellen (nicht für den Betrieb der Website nötig)
+Moderne Frauen/
+
 # OS
 .DS_Store
 Thumbs.db
